@@ -1,4 +1,4 @@
-package JAVA10;
+package TPJAVA;
 
 public class Rond {
     Point center;

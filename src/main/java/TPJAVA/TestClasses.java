@@ -1,4 +1,4 @@
-package JAVA10;
+package TPJAVA;
 
 public class TestClasses {
     public static void main(String[] args) {
@@ -10,5 +10,12 @@ public class TestClasses {
         testRond.affiche();
 
         testRectangle.affiche();
+
+        FigureUtil fig = new FigureUtil();
+        Rond testRond2 = fig.getRandomRond();
+        Rectangle testRectangle2 = fig.getRandomRectangle();
+
+        testRond2.affiche();
+        testRectangle2.affiche();
     }
 }
