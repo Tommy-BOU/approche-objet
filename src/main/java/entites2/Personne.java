@@ -17,4 +17,35 @@ public class Personne {
         this.prenom = prenom;
         this.adressePostale = adressePostale;
     }
+
+    public void Presentation()
+    {
+        System.out.println("Bonjour, je m'appelle " + prenom + " " + nom.toUpperCase());
+    }
+
+    public void setNom(String newNom){
+        this.nom = newNom;
+    }
+
+    public void setPrenom(String newPrenom){
+        this.prenom = newPrenom;
+    }
+
+    public void setAdresse(AdressePostale newAdressePostale){
+        this.adressePostale = newAdressePostale;
+    }
+
+    public String getNom(){
+        return this.nom;
+    }
+
+    public String getPrenom(){
+        return this.prenom;
+    }
+
+    public AdressePostale getAdresse(){
+        return this.adressePostale;
+    }
+
+
 }
