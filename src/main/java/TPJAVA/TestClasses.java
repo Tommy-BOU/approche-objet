@@ -17,5 +17,17 @@ public class TestClasses {
 
         testRond2.affiche();
         testRectangle2.affiche();
+
+        Carre testCarre = new Carre(testPoint, 10);
+        CarreHerite testCarreHerite = new CarreHerite(testPoint, 10);
+
+        testCarre.affiche();
+        testCarreHerite.affiche();
+
+        Carre testCarre2 = fig.getRandomCarre();
+        CarreHerite testCarreHerite2 = fig.getRandomCarreHerite();
+
+        testCarre2.affiche();
+        testCarreHerite2.affiche();
     }
 }

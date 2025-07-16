@@ -28,7 +28,11 @@ public class Rectangle {
     }
 
     public String toString(){
-        return "[RECT " + this.getPointHautGauche().toString() + this.getPointHautDroit().toString() + this.getPointBasGauche().toString() + this.getPointBasDroit().toString() + "]";
+        return "[" + this.getType() + " " + this.getPointHautGauche().toString() + this.getPointHautDroit().toString() + this.getPointBasGauche().toString() + this.getPointBasDroit().toString() + "]";
+    }
+
+    protected String getType(){
+            return "RECT";
     }
 
     public void affiche(){

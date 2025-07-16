@@ -16,4 +16,12 @@ public class FigureUtil {
     public Rectangle getRandomRectangle(){
         return new Rectangle(getRandomPoint(), random.nextInt(100), random.nextInt(100));
     }
+
+    public Carre getRandomCarre(){
+        return new Carre(getRandomPoint(), random.nextInt(100));
+    }
+
+    public CarreHerite getRandomCarreHerite(){
+        return new CarreHerite(getRandomPoint(), random.nextInt(100));
+    }
 }
