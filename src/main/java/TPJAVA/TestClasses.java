@@ -34,8 +34,12 @@ public class TestClasses {
         Carre testCarre3 = new Carre(testPoint, 10);
         CarreHerite testCarreHerite3 = new CarreHerite(testPoint, 10);
 
-        System.out.println(testPoint3.equals(testPoint));
-        System.out.println(testCarre3.equals(testCarre));
-        System.out.println(testCarreHerite3.equals(testCarreHerite));
+        System.out.println("testPoint3.equals(testPoint)) : " + testPoint3.equals(testPoint));
+        System.out.println("testCarre3.equals(testCarre)) : " + testCarre3.equals(testCarre));
+        System.out.println("testCarreHerite3.equals(testCarreHerite)) : " + testCarreHerite3.equals(testCarreHerite));
+
+        Figure testFigure = fig.getRandomFigure();
+
+        testFigure.affiche();
     }
 }

@@ -1,19 +1,25 @@
 package TPJAVA;
 
-public class Rond {
-    Point center;
+public class Rond extends Figure{
     int radius;
 
     public Rond(Point point, int radius){
-        this.center = point;
+        super (point);
         this.radius = radius;
     }
 
-    public String toString(){
-        return "[ROND " + this.center.toString() + " , " + this.radius +"]";
+    public String getType(){
+        return "ROND";
     }
 
-    public void affiche(){
-        System.out.println(this);
+    public String toString(){
+        return "[" + this.getType() + " " + this.center.toString() + " , " + this.radius +"]";
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        Rond compareRond = (Rond) obj;
+        return (this.radius == compareRond.radius) && (this.center == compareRond.center);
+    }
+
 }

@@ -30,23 +30,11 @@ public class Point {
             return "[" + x + ";" + y + "]";
         }
 
-//        public boolean equals(Point p){
-//            return p.x == this.x && p.y == this.y;
-//        }
-
-//    Correction Julien
-//    @Override
-//    public boolean equals(Object obj) {
-//        Point comparePoint = (Point) obj;
-//        return (x == comparePoint.x) && (y == comparePoint.y);
-//    }
-
-//    Correction prof
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) return true;
-//        if (obj == null || !getClass().isAssignableFrom(obj.getClass())) return false;
-//        Point comparePoint = ((Point) obj);
-//        return (x == comparePoint.x) && (y == comparePoint.y);
-//    }
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || !getClass().isAssignableFrom(obj.getClass())) return false;
+            Point comparePoint = ((Point) obj);
+            return (x == comparePoint.x) && (y == comparePoint.y);
+        }
 }

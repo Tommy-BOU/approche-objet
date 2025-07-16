@@ -6,8 +6,8 @@ public class CarreHerite extends Rectangle{
         super (point, size, size);
     }
 
-    @Override
-    protected String getType() {
+    public String getType(){
         return "CARRE";
     }
+
 }

@@ -24,4 +24,16 @@ public class FigureUtil {
     public CarreHerite getRandomCarreHerite(){
         return new CarreHerite(getRandomPoint(), random.nextInt(100));
     }
+
+    public Figure getRandomFigure(){
+        int figureNum = random.nextInt(4);
+
+        // This should never happen
+        return switch (figureNum) {
+            case 0 -> getRandomRond();
+            case 1 -> getRandomRectangle();
+            case 2 -> getRandomCarreHerite();
+            default -> getRandomCarre();
+        };
+    }
 }
