@@ -31,4 +31,8 @@ public class Carre {
     public void affiche(){
         System.out.println(this);
     }
+
+    public boolean equals(Carre c){
+        return c.borderSize == this.borderSize && c.center.equals(this.center);
+    }
 }

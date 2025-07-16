@@ -29,5 +29,13 @@ public class TestClasses {
 
         testCarre2.affiche();
         testCarreHerite2.affiche();
+
+        Point testPoint3 = new Point(10,10);
+        Carre testCarre3 = new Carre(testPoint, 10);
+        CarreHerite testCarreHerite3 = new CarreHerite(testPoint, 10);
+
+        System.out.println(testPoint3.equals(testPoint));
+        System.out.println(testCarre3.equals(testCarre));
+        System.out.println(testCarreHerite3.equals(testCarreHerite));
     }
 }
