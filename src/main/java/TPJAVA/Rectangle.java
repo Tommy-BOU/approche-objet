@@ -1,11 +1,9 @@
 package TPJAVA;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
-public class Rectangle extends Figure implements Surfaçable{
+public class Rectangle extends Figure implements Surfaçable {
     int width;
     int height;
 
@@ -14,8 +12,8 @@ public class Rectangle extends Figure implements Surfaçable{
     private final Point pointHautDroit;
     private final Point pointBasDroit;
 
-    public Rectangle(Point point, int width, int height){
-        super (point);
+    public Rectangle(Point point, int width, int height) {
+        super(point);
         this.width = width;
         this.height = height;
 
@@ -25,34 +23,35 @@ public class Rectangle extends Figure implements Surfaçable{
         this.pointHautDroit = new Point(this.center.getX() + width / 2, this.center.getY() + height / 2);
     }
 
-    public Point getPointBasGauche(){
-       return this.pointBasGauche;
+    public Point getPointBasGauche() {
+        return this.pointBasGauche;
     }
 
-    public Point getPointBasDroit(){
+    public Point getPointBasDroit() {
         return this.pointBasDroit;
     }
 
-    public Point getPointHautGauche(){
+    public Point getPointHautGauche() {
         return this.pointHautGauche;
     }
 
-    public Point getPointHautDroit(){
+    public Point getPointHautDroit() {
         return this.pointHautDroit;
     }
 
-    public String getType(){
+    public String getType() {
         return "RECT";
     }
 
-    public String toString(){
+    public String toString() {
         return "[" + this.getType() + " " + this.getPointHautGauche().toString() + this.getPointHautDroit().toString() + this.getPointBasGauche().toString() + this.getPointBasDroit().toString() + "]";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || (!getClass().isAssignableFrom(o.getClass()) && !o.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(o.getClass()))) return false;
+        if (o == null || (!getClass().isAssignableFrom(o.getClass()) && !o.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(o.getClass())))
+            return false;
         if (Carre.class.isAssignableFrom(o.getClass())) {
             Carre r = ((Carre) o);
             return r.getPointBasDroit().equals(pointBasDroit) && r.getPointBasGauche().equals(pointBasGauche)
@@ -64,13 +63,18 @@ public class Rectangle extends Figure implements Surfaçable{
         }
     }
 
-    public double surface(){
+    public double surface() {
         return this.width * this.height;
     }
 
     @Override
-    public Collection<Point> getPoints(){
-        return Set.of(this.pointHautGauche, this.pointHautDroit, this.pointBasGauche, this.pointBasDroit);
+    public Collection<Point> getPoints() {
+        return List.of(this.pointHautGauche, this.pointHautDroit, this.pointBasGauche, this.pointBasDroit);
+    }
+
+    @Override
+    public boolean couvre(Point point) {
+        return point.getX() >= this.pointHautGauche.getX() && point.getX() <= this.pointBasDroit.getX() && point.getY() <= this.pointHautGauche.getY() && point.getY() >= this.pointBasDroit.getY();
     }
 
 }

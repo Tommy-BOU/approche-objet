@@ -1,6 +1,7 @@
 package TPJAVA;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
@@ -72,5 +73,19 @@ public class FigureUtil {
         }
 
         return randomFigures;
+    }
+
+    public Figure getFigureEn(Point point, Dessin dessin){
+        Iterator<Figure> figures = dessin.getFigures().iterator();
+
+        while(figures.hasNext()) {
+            Figure fig = figures.next();
+            System.out.println(fig);
+            if (fig.couvre(point)){
+                return fig;
+            }
+        }
+
+        return null;
     }
 }

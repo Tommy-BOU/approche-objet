@@ -1,9 +1,7 @@
 package TPJAVA;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 public class Segment extends Figure {
 
@@ -32,7 +30,7 @@ public class Segment extends Figure {
 
 
     public String toString() {
-        return "[" + this.pointDebut.toString() + " à " + this.pointFin.toString() + "]";
+        return "[" +this.getType() + " " + this.pointDebut.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
     }
 
 
@@ -45,7 +43,17 @@ public class Segment extends Figure {
 
     @Override
     public Collection<Point> getPoints() {
-        return Set.of(this.pointDebut, this.pointFin);
+        return List.of(this.pointDebut, this.pointFin);
+    }
+
+    @Override
+    public boolean couvre(Point point) {
+        if (this.horizontal) {
+            return point.getX() >= this.pointDebut.getX() && point.getX() <= this.pointFin.getX() && point.getY() == this.center.getY();
+        }
+        else{
+            return point.getY() >= this.pointDebut.getY() && point.getY() <= this.pointFin.getY() && point.getX() == this.center.getX();
+        }
     }
 
 }
