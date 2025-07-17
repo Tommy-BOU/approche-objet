@@ -1,28 +1,38 @@
 package TPJAVA;
 
-public class Carre extends Figure{
-    Point center;
+public class Carre extends Figure implements Surfaçable{
     int borderSize;
+
+    private final Point pointHautGauche;
+    private final Point pointBasGauche;
+    private final Point pointHautDroit;
+    private final Point pointBasDroit;
 
     public Carre(Point point, int size){
         super (point);
+
         this.borderSize = size;
+
+        this.pointHautGauche = new Point(this.center.getX() - borderSize / 2, this.center.getY() + borderSize / 2);
+        this.pointBasGauche = new Point(this.center.getX() - borderSize / 2, this.center.getY() - borderSize / 2);
+        this.pointBasDroit = new Point(this.center.getX() + borderSize / 2, this.center.getY() - borderSize / 2);
+        this.pointHautDroit = new Point(this.center.getX() + borderSize / 2, this.center.getY() + borderSize / 2);
     }
 
     public Point getPointBasGauche(){
-        return new Point(this.center.getX() - borderSize / 2, this.center.getY() - borderSize / 2);
+        return this.pointBasGauche;
     }
 
     public Point getPointBasDroit(){
-        return new Point(this.center.getX() + borderSize / 2, this.center.getY() - borderSize / 2);
+        return this.pointBasDroit;
     }
 
     public Point getPointHautGauche(){
-        return new Point(this.center.getX() - borderSize / 2, this.center.getY() + borderSize / 2);
+        return this.pointHautGauche;
     }
 
     public Point getPointHautDroit(){
-        return new Point(this.center.getX() + borderSize / 2, this.center.getY() + borderSize / 2);
+        return this.pointHautDroit;
     }
 
     public String getType(){
@@ -33,8 +43,20 @@ public class Carre extends Figure{
         return "[" + this.getType() + " " + this.getPointHautGauche().toString() + this.getPointHautDroit().toString() + this.getPointBasGauche().toString() + this.getPointBasDroit().toString() + "]";
     }
 
+    @Override
     public boolean equals(Object obj){
+        if (obj == this) return true;
+        if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass()))) return false;
         Carre c = (Carre) obj;
         return c.borderSize == this.borderSize && c.center.equals(this.center);
+    }
+
+    public double surface(){
+        return this.borderSize * this.borderSize;
+    }
+
+    @Override
+    public Point[] getPoints(){
+        return new Point[]{this.getPointHautGauche(), this.getPointHautDroit(), this.getPointBasGauche(), this.getPointBasDroit()};
     }
 }

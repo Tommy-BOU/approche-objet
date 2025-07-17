@@ -18,4 +18,6 @@ abstract class Figure {
 
     public abstract boolean equals(Object obj);
 
+    public abstract Point[] getPoints();
+
 }

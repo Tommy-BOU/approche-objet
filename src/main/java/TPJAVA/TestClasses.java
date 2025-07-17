@@ -41,5 +41,15 @@ public class TestClasses {
         Figure testFigure = fig.getRandomFigure();
 
         testFigure.affiche();
+
+        Surfaçable testSurfaçable = fig.getRandomSurfaçable();
+
+        System.out.println(testSurfaçable.surface());
+
+        int index = 0;
+        for (Point point : fig.getPoints(fig.getRandomFigure(), fig.getRandomFigure(), fig.getRandomFigure())){
+            System.out.println("Point " + index + " " + point.toString());
+            index++;
+        }
     }
 }

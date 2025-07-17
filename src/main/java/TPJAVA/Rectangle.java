@@ -1,6 +1,6 @@
 package TPJAVA;
 
-public class Rectangle extends Figure{
+public class Rectangle extends Figure implements Surfaçable{
     int width;
     int height;
 
@@ -44,6 +44,7 @@ public class Rectangle extends Figure{
         return "[" + this.getType() + " " + this.getPointHautGauche().toString() + this.getPointHautDroit().toString() + this.getPointBasGauche().toString() + this.getPointBasDroit().toString() + "]";
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || (!getClass().isAssignableFrom(o.getClass()) && !o.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(o.getClass()))) return false;
@@ -56,6 +57,15 @@ public class Rectangle extends Figure{
             return r.pointBasDroit.equals(pointBasDroit) && r.pointBasGauche.equals(pointBasGauche)
                     && r.pointHautGauche.equals(pointHautGauche) && r.pointHautDroit.equals(pointHautDroit);
         }
+    }
+
+    public double surface(){
+        return this.width * this.height;
+    }
+
+    @Override
+    public Point[] getPoints() {
+        return new Point[] {this.getPointBasDroit(), this.getPointHautDroit(), this.getPointHautGauche(), this.getPointHautDroit()};
     }
 
 }
