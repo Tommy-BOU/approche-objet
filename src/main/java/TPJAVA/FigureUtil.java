@@ -1,7 +1,7 @@
 package TPJAVA;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Random;
 
 public class FigureUtil {
@@ -34,7 +34,6 @@ public class FigureUtil {
     public Figure getRandomFigure() {
         int figureNum = random.nextInt(5);
 
-        // This should never happen
         return switch (figureNum) {
             case 0 -> getRandomRond();
             case 1 -> getRandomRectangle();
@@ -47,7 +46,6 @@ public class FigureUtil {
     public Surfaçable getRandomSurfaçable() {
         int figureNum = random.nextInt(4);
 
-        // This should never happen
         return switch (figureNum) {
             case 0 -> getRandomRond();
             case 1 -> getRandomRectangle();
@@ -56,33 +54,23 @@ public class FigureUtil {
         };
     }
 
-    public Point[] getPoints(Figure... figures) {
-        int arraySize = 0;
+    public Collection<Point> getPoints(Collection<Figure> figures) {
+        Collection<Point> points = new LinkedHashSet<>();
 
         for (Figure figure : figures) {
-            int pointsNum = 0;
-
-            for (Point point : figure.getPoints()) {
-                pointsNum++;
-            }
-
-            arraySize += pointsNum;
-        }
-
-        Point[] points = new Point[arraySize];
-
-        int index = 0;
-
-        for (Figure figure : figures) {
-
-            for (Point point : figure.getPoints()) {
-
-                points[index] = point;
-                index++;
-            }
-
+            points.addAll(figure.getPoints());
         }
 
         return points;
+    }
+
+    public Collection<Figure> genere(int nbFigures) {
+        Collection<Figure> randomFigures = new LinkedHashSet<>(nbFigures);
+
+        for (int i = 0; i < nbFigures; i++) {
+            randomFigures.add(getRandomFigure());
+        }
+
+        return randomFigures;
     }
 }

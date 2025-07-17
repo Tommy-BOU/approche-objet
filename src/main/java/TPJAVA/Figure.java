@@ -1,5 +1,8 @@
 package TPJAVA;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+
 abstract class Figure {
     Point center;
     String type;
@@ -18,6 +21,6 @@ abstract class Figure {
 
     public abstract boolean equals(Object obj);
 
-    public abstract Point[] getPoints();
+    public abstract Collection<Point> getPoints();
 
 }

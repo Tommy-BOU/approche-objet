@@ -1,5 +1,9 @@
 package TPJAVA;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Rond extends Figure implements Surfaçable{
     int radius;
 
@@ -25,8 +29,8 @@ public class Rond extends Figure implements Surfaçable{
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] {this.center};
+    public Collection<Point> getPoints() {
+        return Set.of(this.center);
     }
 
     public double surface(){

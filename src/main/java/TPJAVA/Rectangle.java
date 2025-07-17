@@ -1,5 +1,10 @@
 package TPJAVA;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Rectangle extends Figure implements Surfaçable{
     int width;
     int height;
@@ -64,8 +69,8 @@ public class Rectangle extends Figure implements Surfaçable{
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] {this.getPointBasDroit(), this.getPointHautDroit(), this.getPointHautGauche(), this.getPointHautDroit()};
+    public Collection<Point> getPoints(){
+        return Set.of(this.pointHautGauche, this.pointHautDroit, this.pointBasGauche, this.pointBasDroit);
     }
 
 }

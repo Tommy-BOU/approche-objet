@@ -47,7 +47,7 @@ public class TestClasses {
         System.out.println(testSurfaçable.surface());
 
         int index = 0;
-        for (Point point : fig.getPoints(fig.getRandomFigure(), fig.getRandomFigure(), fig.getRandomFigure())){
+        for (Point point : fig.getPoints(fig.genere(5))){
             System.out.println("Point " + index + " " + point.toString());
             index++;
         }

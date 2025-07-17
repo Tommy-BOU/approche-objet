@@ -1,5 +1,10 @@
 package TPJAVA;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Segment extends Figure {
 
     public int length;
@@ -39,8 +44,8 @@ public class Segment extends Figure {
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] {this.pointDebut, this.pointFin};
+    public Collection<Point> getPoints() {
+        return Set.of(this.pointDebut, this.pointFin);
     }
 
 }

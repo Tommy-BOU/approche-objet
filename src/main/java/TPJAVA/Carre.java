@@ -1,5 +1,10 @@
 package TPJAVA;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Carre extends Figure implements Surfaçable{
     int borderSize;
 
@@ -56,7 +61,7 @@ public class Carre extends Figure implements Surfaçable{
     }
 
     @Override
-    public Point[] getPoints(){
-        return new Point[]{this.getPointHautGauche(), this.getPointHautDroit(), this.getPointBasGauche(), this.getPointBasDroit()};
+    public Collection<Point> getPoints(){
+        return Set.of(this.pointHautGauche, this.pointHautDroit, this.pointBasGauche, this.pointBasDroit);
     }
 }
