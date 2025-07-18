@@ -4,32 +4,33 @@ import java.util.*;
 
 public class FigureUtil {
     private static final Random random = new Random();
+    private static final HashMap<String, Figure> figuresHash = new HashMap<>();
 
     private static Point getRandomPoint() {
         return new Point(random.nextInt(100), random.nextInt(100));
     }
 
-    public Rond getRandomRond() {
+    public static Rond getRandomRond() {
         return new Rond(getRandomPoint(), random.nextInt(100));
     }
 
-    public Rectangle getRandomRectangle() {
+    public static Rectangle getRandomRectangle() {
         return new Rectangle(getRandomPoint(), random.nextInt(100), random.nextInt(100));
     }
 
-    public Carre getRandomCarre() {
+    public static Carre getRandomCarre() {
         return new Carre(getRandomPoint(), random.nextInt(100));
     }
 
-    public CarreHerite getRandomCarreHerite() {
+    public static CarreHerite getRandomCarreHerite() {
         return new CarreHerite(getRandomPoint(), random.nextInt(100));
     }
 
-    public Segment getRandomSegment() {
+    public static Segment getRandomSegment() {
         return new Segment(getRandomPoint(), random.nextInt(100), random.nextBoolean());
     }
 
-    public Figure getRandomFigure() {
+    public static Figure getRandomFigure() {
         int figureNum = random.nextInt(5);
 
         return switch (figureNum) {
@@ -39,6 +40,17 @@ public class FigureUtil {
             case 3 -> getRandomSegment();
             default -> getRandomCarre();
         };
+    }
+
+    public static Figure createRandomFigure(String key) {
+        Figure figure = getRandomFigure();
+        figuresHash.put(key, figure);
+
+        return figure;
+    }
+
+    public Figure get(String id){
+        return figuresHash.get(id);
     }
 
     public Surfaçable getRandomSurfaçable() {
