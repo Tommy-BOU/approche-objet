@@ -37,8 +37,9 @@ public class Segment extends Figure {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
+        if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass()))) return false;
         Segment s = (Segment) obj;
-        return ((this.length == s.length) && (this.horizontal == s.horizontal) && (this.center.equals(s.center)));
+        return this.pointDebut.equals(s.pointDebut) && this.pointFin.equals(s.pointFin);
     }
 
     @Override

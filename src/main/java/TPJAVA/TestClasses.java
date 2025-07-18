@@ -70,5 +70,15 @@ public class TestClasses {
         testFigures.add(new Segment(new Point(10, 50), 100, false));
         Dessin testDessin = new Dessin(testFigures);
         System.out.println("Point couvert par le dessins :" + fig.getFigureEn(testPoint, testDessin));
+
+        System.out.println("---------------------------------------------------------------------");
+
+        Segment testSegment = new Segment(testPoint, 10,true);
+        Segment testSegment2 = new Segment(testPoint, 10,true);
+        Segment testSegment3 = new Segment(testPoint, 20,false);
+
+        System.out.println("Segment 1 et 2 égaux : " + testSegment.equals(testSegment2));
+        System.out.println("Segment 1 et 3 égaux : " + testSegment.equals(testSegment3));
+
     }
 }
