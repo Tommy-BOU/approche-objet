@@ -33,13 +33,14 @@ public class Rond extends Figure implements Surfaçable {
         return List.of(this.center);
     }
 
+    @Override
     public double surface() {
         return Math.PI * (this.radius * this.radius);
     }
 
     @Override
     public boolean couvre(Point point) {
-        double distance = getDistance(point, this.center);
+        double distance = this.center.distance(point);
         return distance <= this.radius;
     }
 

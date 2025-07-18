@@ -54,6 +54,7 @@ public class Carre extends Figure implements Surfaçable{
         return c.borderSize == this.borderSize && c.center.equals(this.center);
     }
 
+    @Override
     public double surface(){
         return this.borderSize * this.borderSize;
     }

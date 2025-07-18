@@ -1,7 +1,6 @@
 package TPJAVA;
 
-import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 public class TestClasses {
     public static void main(String[] args) {
@@ -80,5 +79,20 @@ public class TestClasses {
         System.out.println("Segment 1 et 2 égaux : " + testSegment.equals(testSegment2));
         System.out.println("Segment 1 et 3 égaux : " + testSegment.equals(testSegment3));
 
+        System.out.println("---------------------------------------------------------------------");
+
+        Collection<Figure> testCollection2 = fig.genere(5);
+        Dessin testDessin2 = new Dessin(testCollection2);
+        testCollection2 = fig.trieProcheOrigine(testDessin2);
+        System.out.println("Liste après tri par distance : " + testCollection2);
+        for (Figure figure : testCollection2){
+            System.out.println("Distance : " + figure.distanceOrigine() + figure);
+        }
+        Collection<Surfaçable> testCollection3 = fig.trieDominant(testDessin2);
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("Liste après tri par surface : " + testCollection3);
+        for (Surfaçable figure : testCollection3){
+            System.out.println("Distance : " + figure.surface() + figure);
+        }
     }
 }

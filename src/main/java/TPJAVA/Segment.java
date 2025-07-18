@@ -30,14 +30,15 @@ public class Segment extends Figure {
 
 
     public String toString() {
-        return "[" +this.getType() + " " + this.pointDebut.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
+        return "[" + this.getType() + " " + this.pointDebut.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
     }
 
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass()))) return false;
+        if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass())))
+            return false;
         Segment s = (Segment) obj;
         return this.pointDebut.equals(s.pointDebut) && this.pointFin.equals(s.pointFin);
     }
@@ -48,11 +49,15 @@ public class Segment extends Figure {
     }
 
     @Override
+    public double surface() {
+        return 0;
+    }
+
+    @Override
     public boolean couvre(Point point) {
         if (this.horizontal) {
             return point.getX() >= this.pointDebut.getX() && point.getX() <= this.pointFin.getX() && point.getY() == this.center.getY();
-        }
-        else{
+        } else {
             return point.getY() >= this.pointDebut.getY() && point.getY() <= this.pointFin.getY() && point.getX() == this.center.getX();
         }
     }

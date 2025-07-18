@@ -1,9 +1,6 @@
 package TPJAVA;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Random;
+import java.util.*;
 
 public class FigureUtil {
     private static final Random random = new Random();
@@ -87,5 +84,34 @@ public class FigureUtil {
         }
 
         return null;
+    }
+
+    public Collection<Figure> trieProcheOrigine(Dessin dessin){
+//        List<Figure> figuresList = new ArrayList<>(dessin.getFigures());
+//        Collections.sort(figuresList);
+//        return figuresList;
+
+        return new TreeSet<>(dessin.getFigures());
+    }
+
+    public Collection<Surfaçable> trieDominant(Dessin dessin){
+         ArrayList<Surfaçable> list = new ArrayList<>();
+        for (Figure figure : dessin.getFigures()) {
+            if (Surfaçable.class.isAssignableFrom(figure.getClass())) {
+                list.add((Surfaçable) figure);
+            }
+        }
+        list.sort(new Comparator<>() {
+            @Override
+            public int compare(Surfaçable o1, Surfaçable o2) {
+                if (o1.surface() > o2.surface()) {
+                    return -1;
+                } else if (o1.surface() < o2.surface()) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
+        return list;
     }
 }

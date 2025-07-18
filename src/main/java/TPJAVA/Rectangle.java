@@ -63,6 +63,7 @@ public class Rectangle extends Figure implements Surfaçable {
         }
     }
 
+    @Override
     public double surface() {
         return this.width * this.height;
     }
@@ -71,6 +72,7 @@ public class Rectangle extends Figure implements Surfaçable {
     public Collection<Point> getPoints() {
         return List.of(this.pointHautGauche, this.pointHautDroit, this.pointBasGauche, this.pointBasDroit);
     }
+
 
     @Override
     public boolean couvre(Point point) {
