@@ -10,17 +10,25 @@ public class Segment extends Figure {
     Point pointDebut;
     Point pointFin;
 
-    public Segment(Point point, int length, boolean horizontal) {
+    public Segment(Point point, int length, boolean horizontal) throws DessinHorsLimiteException{
         super(point);
         this.length = length;
         this.horizontal = horizontal;
 
         if (horizontal) {
-            this.pointDebut = new Point((this.center.getX() - this.length / 2), this.center.getY());
-            this.pointFin = new Point((this.center.getX() + this.length / 2), this.center.getY());
+            try {
+                this.pointDebut = new Point((this.center.getX() - this.length / 2), this.center.getY());
+                this.pointFin = new Point((this.center.getX() + this.length / 2), this.center.getY());
+            } catch (DessinHorsLimiteException e) {
+                throw new DessinHorsLimiteException("Impossible de crée un des points du segment " + this + " : " + e.getMessage());
+            }
         } else {
-            this.pointDebut = new Point((this.center.getX()), (this.center.getY() - this.length / 2));
-            this.pointFin = new Point((this.center.getX()), (this.center.getY() + this.length / 2));
+            try {
+                this.pointDebut = new Point((this.center.getX()), (this.center.getY() - this.length / 2));
+                this.pointFin = new Point((this.center.getX()), (this.center.getY() + this.length / 2));
+            } catch (DessinHorsLimiteException e) {
+                throw new DessinHorsLimiteException("Impossible de crée un des points du segment " + this + " : " + e.getMessage());
+            }
         }
     }
 

@@ -12,15 +12,19 @@ public class Rectangle extends Figure implements Surfaçable {
     private final Point pointHautDroit;
     private final Point pointBasDroit;
 
-    public Rectangle(Point point, int width, int height) {
+    public Rectangle(Point point, int width, int height) throws DessinHorsLimiteException{
         super(point);
         this.width = width;
         this.height = height;
 
-        this.pointHautGauche = new Point(this.center.getX() - width / 2, this.center.getY() + height / 2);
-        this.pointBasGauche = new Point(this.center.getX() - width / 2, this.center.getY() - height / 2);
-        this.pointBasDroit = new Point(this.center.getX() + width / 2, this.center.getY() - height / 2);
-        this.pointHautDroit = new Point(this.center.getX() + width / 2, this.center.getY() + height / 2);
+        try {
+            this.pointHautGauche = new Point(this.center.getX() - width / 2, this.center.getY() + height / 2);
+            this.pointBasGauche = new Point(this.center.getX() - width / 2, this.center.getY() - height / 2);
+            this.pointBasDroit = new Point(this.center.getX() + width / 2, this.center.getY() - height / 2);
+            this.pointHautDroit = new Point(this.center.getX() + width / 2, this.center.getY() + height / 2);
+        } catch (DessinHorsLimiteException e) {
+            throw new DessinHorsLimiteException("Impossible de créer un des points du rectangle " + this + " : " + e.getMessage());
+        }
     }
 
     public Point getPointBasGauche() {

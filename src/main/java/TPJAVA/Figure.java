@@ -4,7 +4,15 @@ import java.util.Collection;
 
 public abstract class Figure implements Comparable<Figure> {
     Point center;
-    private static Point origine = new Point();
+    private static final Point origine;
+
+    static {
+        try {
+            origine = new Point();
+        } catch (DessinHorsLimiteException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Figure(Point p) {
         this.center = p;

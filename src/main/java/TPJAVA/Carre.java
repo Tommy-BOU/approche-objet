@@ -11,15 +11,20 @@ public class Carre extends Figure implements Surfaçable{
     private final Point pointHautDroit;
     private final Point pointBasDroit;
 
-    public Carre(Point point, int size){
+    public Carre(Point point, int size) throws DessinHorsLimiteException{
         super (point);
 
         this.borderSize = size;
 
-        this.pointHautGauche = new Point(this.center.getX() - borderSize / 2, this.center.getY() + borderSize / 2);
+        try {
+            this.pointHautGauche = new Point(this.center.getX() - borderSize / 2, this.center.getY() + borderSize / 2);
         this.pointBasGauche = new Point(this.center.getX() - borderSize / 2, this.center.getY() - borderSize / 2);
         this.pointBasDroit = new Point(this.center.getX() + borderSize / 2, this.center.getY() - borderSize / 2);
         this.pointHautDroit = new Point(this.center.getX() + borderSize / 2, this.center.getY() + borderSize / 2);
+        } catch (DessinHorsLimiteException e) {
+            throw new DessinHorsLimiteException("Impossible de créer un des points du carre " + this + " : " + e.getMessage());
+        }
+
     }
 
     public Point getPointBasGauche(){

@@ -8,12 +8,15 @@ public class Point {
     public int x;
     public int y;
 
-    public Point(int x, int y) {
+    public Point(int x, int y) throws DessinHorsLimiteException {
+        if (x < 0 || x > 99 || y < 0 || y > 99){
+            throw new DessinHorsLimiteException("Le point ne respecte par la limite ([0:99]) : Point " + this);
+        }
         this.x = x;
         this.y = y;
     }
 
-    public Point() {
+    public Point() throws DessinHorsLimiteException{
         this(INIT_X, INIT_Y);
     }
 
