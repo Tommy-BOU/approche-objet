@@ -55,13 +55,13 @@ public abstract class Figure implements Comparable<Figure> {
 
     public String toString(){
         return getType() + " " + this.color;
-    };
+    }
 
     public boolean equals(Object obj){
         if (this == obj) return true;
         if (!(obj instanceof Figure)) return false;
         return (initialPoint == ((Figure) obj).initialPoint && color == ((Figure) obj).getColor());
-    };
+    }
 
     public abstract double surface();
 

@@ -28,14 +28,6 @@ public class Point {
         return this.y;
     }
 
-    public int getINIT_X() {
-        return INIT_X;
-    }
-
-    public int getINIT_Y() {
-        return INIT_Y;
-    }
-
     public String toString() {
         return "[" + x + ";" + y + "]";
     }

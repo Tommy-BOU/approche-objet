@@ -4,9 +4,8 @@ import java.util.*;
 
 public class TestClasses {
     public static void main(String[] args) {
-        Point testPoint = null;
         try {
-            testPoint = new Point(10, 10);
+            Point testPoint = new Point(10, 10);
 
             Rond testRond = new Rond(testPoint, 10);
             Rectangle testRectangle = new Rectangle(new Point(50, 50), 10, 10);
@@ -47,9 +46,9 @@ public class TestClasses {
 
             testFigure.affiche();
 
-            Surfaçable testSurfaçable = fig.getRandomSurfaçable();
+            Surfacable testSurfacable = fig.getRandomSurfacable();
 
-            System.out.println(testSurfaçable.surface());
+            System.out.println(testSurfacable.surface());
 
             Collection<Figure> testCollection = fig.genere(5);
             for (Point point : fig.getPoints(testCollection)) {
@@ -91,10 +90,10 @@ public class TestClasses {
             for (Figure figure : testCollection2) {
                 System.out.println("Distance : " + figure.distanceOrigine() + figure);
             }
-            Collection<Surfaçable> testCollection3 = fig.trieDominant(testDessin2);
+            Collection<Surfacable> testCollection3 = fig.trieDominant(testDessin2);
             System.out.println("---------------------------------------------------------------------");
             System.out.println("Liste après tri par surface : " + testCollection3);
-            for (Surfaçable figure : testCollection3) {
+            for (Surfacable figure : testCollection3) {
                 System.out.println("Distance : " + figure.surface() + figure);
             }
         } catch (DessinHorsLimiteException e) {

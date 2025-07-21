@@ -3,7 +3,7 @@ package TPJAVA;
 import java.util.Collection;
 import java.util.List;
 
-public class Rectangle extends Figure implements Surfaçable {
+public class Rectangle extends Figure implements Surfacable {
     int width;
     int height;
 

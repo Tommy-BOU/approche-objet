@@ -3,7 +3,7 @@ package TPJAVA;
 import java.util.Collection;
 import java.util.List;
 
-public class Carre extends Figure implements Surfaçable {
+public class Carre extends Figure implements Surfacable {
     int borderSize;
 
     private final Point pointHautGauche;

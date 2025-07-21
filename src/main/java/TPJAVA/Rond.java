@@ -3,7 +3,7 @@ package TPJAVA;
 import java.util.Collection;
 import java.util.List;
 
-public class Rond extends Figure implements Surfaçable {
+public class Rond extends Figure implements Surfacable {
     int radius;
 
     public Rond(Point point, int radius) {

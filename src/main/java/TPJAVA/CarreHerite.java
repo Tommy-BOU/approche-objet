@@ -1,6 +1,6 @@
 package TPJAVA;
 
-public class CarreHerite extends Rectangle implements Surfaçable{
+public class CarreHerite extends Rectangle implements Surfacable {
 
     public CarreHerite(Point point, int size) throws DessinHorsLimiteException{
         super (point, size, size);

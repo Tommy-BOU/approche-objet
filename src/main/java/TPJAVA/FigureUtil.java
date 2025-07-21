@@ -59,7 +59,7 @@ public class FigureUtil {
         return figuresHash.get(id);
     }
 
-    public Surfaçable getRandomSurfaçable() throws DessinHorsLimiteException {
+    public Surfacable getRandomSurfacable() throws DessinHorsLimiteException {
         int figureNum = random.nextInt(4);
 
         return switch (figureNum) {
@@ -116,16 +116,16 @@ public class FigureUtil {
         return new TreeSet<>(dessin.getFigures());
     }
 
-    public Collection<Surfaçable> trieDominant(Dessin dessin) {
-        ArrayList<Surfaçable> list = new ArrayList<>();
+    public Collection<Surfacable> trieDominant(Dessin dessin) {
+        ArrayList<Surfacable> list = new ArrayList<>();
         for (Figure figure : dessin.getFigures()) {
-            if (Surfaçable.class.isAssignableFrom(figure.getClass())) {
-                list.add((Surfaçable) figure);
+            if (Surfacable.class.isAssignableFrom(figure.getClass())) {
+                list.add((Surfacable) figure);
             }
         }
         list.sort(new Comparator<>() {
             @Override
-            public int compare(Surfaçable o1, Surfaçable o2) {
+            public int compare(Surfacable o1, Surfacable o2) {
                 if (o1.surface() > o2.surface()) {
                     return -1;
                 } else if (o1.surface() < o2.surface()) {

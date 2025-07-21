@@ -1,5 +1,5 @@
 package TPJAVA;
 
-public interface Surfaçable {
+public interface Surfacable {
     double surface();
 }
