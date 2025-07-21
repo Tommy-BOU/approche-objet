@@ -7,7 +7,11 @@ public class Rond extends Figure implements Surfaçable {
     int radius;
 
     public Rond(Point point, int radius) {
-        super(point);
+        this(point, Couleur.getCouleurDefaut(), radius);
+    }
+
+    public Rond(Point point, Couleur color, int radius) {
+        super(point, color);
         this.radius = radius;
     }
 
@@ -16,21 +20,21 @@ public class Rond extends Figure implements Surfaçable {
     }
 
     public String toString() {
-        return "[" + this.getType() + " " + this.center.toString() + " , " + this.radius + "]";
+        return "[" + super.toString() + " " + this.initialPoint.toString() + " , " + this.radius + "]";
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
         if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass())))
             return false;
         Rond compareRond = (Rond) obj;
-        return (this.radius == compareRond.radius) && (this.center == compareRond.center);
+        return (this.radius == compareRond.radius) && (this.initialPoint == compareRond.initialPoint) && compareRond.getColor() == this.color;
     }
 
     @Override
     public Collection<Point> getPoints() {
-        return List.of(this.center);
+        return List.of(this.initialPoint);
     }
 
     @Override
@@ -40,7 +44,7 @@ public class Rond extends Figure implements Surfaçable {
 
     @Override
     public boolean couvre(Point point) {
-        double distance = this.center.distance(point);
+        double distance = this.initialPoint.distance(point);
         return distance <= this.radius;
     }
 

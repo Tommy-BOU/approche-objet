@@ -3,7 +3,8 @@ package TPJAVA;
 import java.util.Collection;
 
 public abstract class Figure implements Comparable<Figure> {
-    Point center;
+    protected Point initialPoint;
+    Couleur color;
     private static final Point origine;
 
     static {
@@ -14,8 +15,9 @@ public abstract class Figure implements Comparable<Figure> {
         }
     }
 
-    public Figure(Point p) {
-        this.center = p;
+    public Figure(Point p, Couleur color) {
+        this.initialPoint = p;
+        this.color = color;
     }
 
     public void affiche() {
@@ -43,13 +45,23 @@ public abstract class Figure implements Comparable<Figure> {
         }
     }
 
+    public Couleur getColor(){
+        return this.color;
+    }
+
     public abstract boolean couvre(Point point);
 
     public abstract String getType();
 
-    public abstract String toString();
+    public String toString(){
+        return getType() + " " + this.color;
+    };
 
-    public abstract boolean equals(Object obj);
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (!(obj instanceof Figure)) return false;
+        return (initialPoint == ((Figure) obj).initialPoint && color == ((Figure) obj).getColor());
+    };
 
     public abstract double surface();
 

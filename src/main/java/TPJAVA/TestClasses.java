@@ -17,8 +17,8 @@ public class TestClasses {
             testRectangle.affiche();
 
             FigureUtil fig = new FigureUtil();
-            Rond testRond2 = fig.getRandomRond();
-            Rectangle testRectangle2 = fig.getRandomRectangle();
+            Rond testRond2 = FigureUtil.getRandomRond();
+            Rectangle testRectangle2 = FigureUtil.getRandomRectangle();
 
             testRond2.affiche();
             testRectangle2.affiche();
@@ -29,8 +29,8 @@ public class TestClasses {
             testCarre.affiche();
             testCarreHerite.affiche();
 
-            Carre testCarre2 = fig.getRandomCarre();
-            CarreHerite testCarreHerite2 = fig.getRandomCarreHerite();
+            Carre testCarre2 = FigureUtil.getRandomCarre();
+            CarreHerite testCarreHerite2 = FigureUtil.getRandomCarreHerite();
 
             testCarre2.affiche();
             testCarreHerite2.affiche();
@@ -43,7 +43,7 @@ public class TestClasses {
             System.out.println("testCarre3.equals(testCarre)) : " + testCarre3.equals(testCarre));
             System.out.println("testCarreHerite3.equals(testCarreHerite)) : " + testCarreHerite3.equals(testCarreHerite));
 
-            Figure testFigure = fig.getRandomFigure();
+            Figure testFigure = FigureUtil.getRandomFigure();
 
             testFigure.affiche();
 
@@ -66,10 +66,10 @@ public class TestClasses {
 //        Manual method
             Collection<Figure> testFigures = new LinkedHashSet<>();
             testFigures.add(new Rond(testPoint, 10));
-            testFigures.add(new Carre(new Point(90, 90), 20));
+            testFigures.add(new Carre(new Point(50, 50), 20));
             testFigures.add(new Rectangle(new Point(50, 50), 30, 25));
-            testFigures.add(new CarreHerite(new Point(0, 0), 9));
-            testFigures.add(new Segment(new Point(10, 50), 100, false));
+            testFigures.add(new CarreHerite(new Point(10, 10), 9));
+            testFigures.add(new Segment(new Point(10, 50), 5, false));
             Dessin testDessin = new Dessin(testFigures);
             System.out.println("Point couvert par le dessins :" + fig.getFigureEn(testPoint, testDessin));
 

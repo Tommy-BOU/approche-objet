@@ -7,27 +7,33 @@ public class FigureUtil {
     private static final HashMap<String, Figure> figuresHash = new HashMap<>();
 
     private static Point getRandomPoint() throws DessinHorsLimiteException {
-        return new Point(random.nextInt(100), random.nextInt(100));
+        return new Point(random.nextInt(98) + 1, random.nextInt(98) + 1);
     }
 
     public static Rond getRandomRond() throws DessinHorsLimiteException {
-        return new Rond(getRandomPoint(), random.nextInt(100));
+        Point p = getRandomPoint();
+        return new Rond(getRandomPoint(), getRandomColor(), random.nextInt(100 - Math.max(p.getX(), p.getY())));
     }
 
     public static Rectangle getRandomRectangle() throws DessinHorsLimiteException {
-        return new Rectangle(getRandomPoint(), random.nextInt(100), random.nextInt(100));
+        Point p = getRandomPoint();
+        return new Rectangle(p, getRandomColor(), random.nextInt(100 - p.getX()), random.nextInt(100 - p.getY()));
     }
 
     public static Carre getRandomCarre() throws DessinHorsLimiteException {
-        return new Carre(getRandomPoint(), random.nextInt(100));
+        Point p = getRandomPoint();
+        return new Carre(p, getRandomColor(), random.nextInt(100 - Math.max(p.getX(), p.getY())));
     }
 
     public static CarreHerite getRandomCarreHerite() throws DessinHorsLimiteException {
-        return new CarreHerite(getRandomPoint(), random.nextInt(100));
+        Point p = getRandomPoint();
+        return new CarreHerite(p, getRandomColor(), random.nextInt(100 - Math.max(p.getX(), p.getY())));
     }
 
     public static Segment getRandomSegment() throws DessinHorsLimiteException {
-        return new Segment(getRandomPoint(), random.nextInt(100), random.nextBoolean());
+        Point p = getRandomPoint();
+        boolean h = random.nextBoolean();
+        return new Segment(p, getRandomColor(), (h ?  random.nextInt(100 - p.getX()) : random.nextInt(100 - p.getY())), h);
     }
 
     public static Figure getRandomFigure() throws DessinHorsLimiteException {
@@ -62,6 +68,10 @@ public class FigureUtil {
             case 2 -> getRandomCarreHerite();
             default -> getRandomCarre();
         };
+    }
+
+    public static Couleur getRandomColor(){
+        return Couleur.values()[random.nextInt(Couleur.values().length)];
     }
 
     public Collection<Point> getPoints(Collection<Figure> figures) {

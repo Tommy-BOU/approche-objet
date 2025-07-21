@@ -6,6 +6,10 @@ public class CarreHerite extends Rectangle implements Surfaçable{
         super (point, size, size);
     }
 
+    public CarreHerite(Point point, Couleur color, int size) throws DessinHorsLimiteException{
+        super (point, color, size, size);
+    }
+
     public String getType(){
         return "CARRE";
     }

@@ -10,7 +10,7 @@ public class Point {
 
     public Point(int x, int y) throws DessinHorsLimiteException {
         if (x < 0 || x > 99 || y < 0 || y > 99){
-            throw new DessinHorsLimiteException("Le point ne respecte par la limite ([0:99]) : Point " + this);
+            throw new DessinHorsLimiteException("Le point ne respecte par la limite ([0:99]) : Point [" + x + ";" + y +"]");
         }
         this.x = x;
         this.y = y;

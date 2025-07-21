@@ -7,29 +7,19 @@ public class Segment extends Figure {
 
     public int length;
     public boolean horizontal;
-    Point pointDebut;
+
     Point pointFin;
 
-    public Segment(Point point, int length, boolean horizontal) throws DessinHorsLimiteException{
-        super(point);
+    public Segment(Point point, int length, boolean horizontal) throws DessinHorsLimiteException {
+        this(point, Couleur.getCouleurDefaut(), length, horizontal);
+    }
+
+    public Segment(Point point, Couleur color, int length, boolean horizontal) throws DessinHorsLimiteException {
+        super(point, color);
         this.length = length;
         this.horizontal = horizontal;
 
-        if (horizontal) {
-            try {
-                this.pointDebut = new Point((this.center.getX() - this.length / 2), this.center.getY());
-                this.pointFin = new Point((this.center.getX() + this.length / 2), this.center.getY());
-            } catch (DessinHorsLimiteException e) {
-                throw new DessinHorsLimiteException("Impossible de crée un des points du segment " + this + " : " + e.getMessage());
-            }
-        } else {
-            try {
-                this.pointDebut = new Point((this.center.getX()), (this.center.getY() - this.length / 2));
-                this.pointFin = new Point((this.center.getX()), (this.center.getY() + this.length / 2));
-            } catch (DessinHorsLimiteException e) {
-                throw new DessinHorsLimiteException("Impossible de crée un des points du segment " + this + " : " + e.getMessage());
-            }
-        }
+        pointFin = new Point(initialPoint.getX() + (horizontal ? length : 0), initialPoint.getY() + (horizontal ? 0 : length));
     }
 
     public String getType() {
@@ -38,22 +28,22 @@ public class Segment extends Figure {
 
 
     public String toString() {
-        return "[" + this.getType() + " " + this.pointDebut.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
+        return "[" + super.toString() + " " + this.initialPoint.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
     }
 
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
         if (obj == null || (!getClass().isAssignableFrom(obj.getClass()) && !obj.getClass().isAssignableFrom(getClass()) && !Carre.class.isAssignableFrom(obj.getClass())))
             return false;
         Segment s = (Segment) obj;
-        return this.pointDebut.equals(s.pointDebut) && this.pointFin.equals(s.pointFin);
+        return this.initialPoint.equals(s.initialPoint) && this.pointFin.equals(s.pointFin) && s.getColor() == this.color;
     }
 
     @Override
     public Collection<Point> getPoints() {
-        return List.of(this.pointDebut, this.pointFin);
+        return List.of(this.initialPoint, this.pointFin);
     }
 
     @Override
@@ -64,9 +54,9 @@ public class Segment extends Figure {
     @Override
     public boolean couvre(Point point) {
         if (this.horizontal) {
-            return point.getX() >= this.pointDebut.getX() && point.getX() <= this.pointFin.getX() && point.getY() == this.center.getY();
+            return point.getX() >= this.initialPoint.getX() && point.getX() <= this.pointFin.getX() && point.getY() == this.initialPoint.getY();
         } else {
-            return point.getY() >= this.pointDebut.getY() && point.getY() <= this.pointFin.getY() && point.getX() == this.center.getX();
+            return point.getY() >= this.initialPoint.getY() && point.getY() <= this.pointFin.getY() && point.getX() == this.initialPoint.getX();
         }
     }
 
