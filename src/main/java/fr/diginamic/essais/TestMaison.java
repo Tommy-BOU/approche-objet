@@ -24,6 +24,8 @@ public class TestMaison {
 //        maison.ajouterPiece(null);
 
         System.out.println(maison);
+        System.out.println("Superficie de la maison : " + maison.getTotalSuperficie());
+        System.out.println("Superficie du 1er étage : " + maison.getEtageSuperficie(1));
         System.out.println("Superficie des chambres : " + maison.getSuperficieByRoomType("Chambre"));
         System.out.println("Nombre de chambres : " + maison.getNumberOfRoomByType("Chambre"));
     }

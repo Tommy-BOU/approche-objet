@@ -43,7 +43,7 @@ public class Maison {
     public double getSuperficieByRoomType(String pieceType){
         double total = 0;
         for (Piece piece : piecesDeLaMaison) {
-            if (piece.toString().toUpperCase() == pieceType.toUpperCase()) {
+            if (piece.toString() == pieceType) {
                 total += piece.getSuperficie();
 
             }
@@ -54,7 +54,7 @@ public class Maison {
     public int getNumberOfRoomByType(String pieceType){
         int total = 0;
         for (Piece piece : piecesDeLaMaison) {
-            if (piece.toString().toUpperCase() == pieceType.toUpperCase()) {
+            if (piece.toString() == pieceType) {
                 total ++;
             }
         }
