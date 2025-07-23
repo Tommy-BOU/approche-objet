@@ -96,7 +96,25 @@ public class TestClasses {
             for (Surfacable figure : testCollection3) {
                 System.out.println("Distance : " + figure.surface() + figure);
             }
-        } catch (DessinHorsLimiteException e) {
+
+            Dessin dessinTest2 = new Dessin();
+
+            dessinTest2.add(new Rond(testPoint, Couleur.ROUGE, 50));
+            dessinTest2.add(new Rectangle(new Point(25,50), Couleur.BLEU, 25, 36));
+            dessinTest2.add(new Segment(new Point(50, 43), Couleur.JAUNE, 20, true));
+
+            FigureUtil.save(dessinTest2, "testFile");
+
+            Dessin dessinTest3 = FigureUtil.load("testFile");
+            System.out.println("---------------------------------------------------------------------");
+            System.out.println("figures du dessin chargé :");
+            for (Figure figure : dessinTest3.getFigures()){
+                System.out.println(figure);
+            }
+
+            Dessin dessinTestLoad = FigureUtil.load("testNotFound");
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

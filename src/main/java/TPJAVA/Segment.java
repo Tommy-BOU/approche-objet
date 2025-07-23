@@ -28,7 +28,7 @@ public class Segment extends Figure {
 
 
     public String toString() {
-        return "[" + super.toString() + " " + this.initialPoint.toString() + " à " + this.pointFin.toString() + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
+        return "[" + super.toString() + " " + this.initialPoint + " à " + this.pointFin + "," + (this.horizontal ? "Horizontal" : "Vertical") + "]";
     }
 
 

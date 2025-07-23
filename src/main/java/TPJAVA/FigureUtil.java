@@ -1,5 +1,8 @@
 package TPJAVA;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class FigureUtil {
@@ -33,7 +36,7 @@ public class FigureUtil {
     public static Segment getRandomSegment() throws DessinHorsLimiteException {
         Point p = getRandomPoint();
         boolean h = random.nextBoolean();
-        return new Segment(p, getRandomColor(), (h ?  random.nextInt(100 - p.getX()) : random.nextInt(100 - p.getY())), h);
+        return new Segment(p, getRandomColor(), (h ? random.nextInt(100 - p.getX()) : random.nextInt(100 - p.getY())), h);
     }
 
     public static Figure getRandomFigure() throws DessinHorsLimiteException {
@@ -70,7 +73,7 @@ public class FigureUtil {
         };
     }
 
-    public static Couleur getRandomColor(){
+    public static Couleur getRandomColor() {
         return Couleur.values()[random.nextInt(Couleur.values().length)];
     }
 
@@ -135,5 +138,105 @@ public class FigureUtil {
             }
         });
         return list;
+    }
+
+    public static void save(Dessin dessin, String name) throws IOException {
+        String fileString = "";
+        for (Figure figure : dessin.getFigures()) {
+            fileString += "{" + "\n" + "TYPE=[" + figure.getType() + "]\n" + "COLOR=[" + figure.getColor() + "]\n" + "INIT_X=[" + figure.initialPoint.getX() + "]\n" + "INIT_Y=[" + figure.initialPoint.getY() + "]\n";
+            switch (figure.getType()) {
+                case "CARRE" -> fileString += "SIZE=[" + ((Carre) figure).borderSize + "]\n";
+                case "CARREHERITE" -> fileString += "SIZE=[" + ((CarreHerite) figure).width + "]\n";
+                case "RECT" ->
+                        fileString += "WIDTH=[" + ((Rectangle) figure).width + "]\n" + "HEIGHT=[" + ((Rectangle) figure).height + "]\n";
+                case "ROND" -> fileString += "RADIUS=[" + ((Rond) figure).radius + "]\n";
+                case "SEGMENT" ->
+                        fileString += "LENGTH=[" + ((Segment) figure).length + "]\n" + "HORIZONTAL=[" + ((Segment) figure).horizontal + "]\n";
+            }
+
+            fileString += "}" + "\n";
+        }
+
+        Files.createDirectories(Paths.get("./saves"));
+        try {
+            File myObj = new File("./saves/" + name + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./saves/" + name + ".txt"));
+            writer.write(fileString);
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static Dessin load(String name) throws IOException, DessinHorsLimiteException {
+        Dessin loadedDessin = new Dessin();
+        BufferedReader br = new BufferedReader(new FileReader("./saves/" + name + ".txt"));
+
+        String type = "";
+        Couleur color = Couleur.getCouleurDefaut();
+        int initX = 0;
+        int initY = 0;
+        int valueX = 0;
+        int valueY = 0;
+        boolean horizontal = false;
+        try {
+            String line = br.readLine();
+
+            while (line != null) {
+                int endIndex = line.indexOf("]");
+                int startIndex = line.indexOf("[");
+                String value = "";
+                if (line.length() > 1) {
+                    value = line.substring(startIndex + 1, endIndex);
+                }
+                if (line.contains("TYPE")) {
+                    type = value;
+                } else if (line.contains("COLOR")) {
+                    color = Couleur.getCouleur(value.charAt(0));
+                } else if (line.contains("INIT_X")) {
+                    initX = Integer.parseInt(value);
+                } else if (line.contains("INIT_Y")) {
+                    initY = Integer.parseInt(value);
+                } else if (line.contains("SIZE")) {
+                    valueX = Integer.parseInt(value);
+                } else if (line.contains("RADIUS")) {
+                    valueX = Integer.parseInt(value);
+                } else if (line.contains("WIDTH")) {
+                    valueX = Integer.parseInt(value);
+                } else if (line.contains("HEIGHT")) {
+                    valueY = Integer.parseInt(value);
+                } else if (line.contains("HORIZONTAL")) {
+                    horizontal = Boolean.parseBoolean(value);
+                } else if (line.contains("LENGTH")) {
+                    valueX = Integer.parseInt(value);
+                } else if (line.contains("}")) {
+                    Figure newFig = null;
+                    Point initialPoint = new Point(initX, initY);
+                    newFig = switch (type) {
+                        case "CARRE" -> new Carre(initialPoint, color, valueX);
+                        case "CARREHERITE" -> new CarreHerite(initialPoint, color, valueX);
+                        case "RECT" -> new Rectangle(initialPoint, color, valueX, valueY);
+                        case "ROND" -> new Rond(initialPoint, color, valueX);
+                        case "SEGMENT" -> new Segment(initialPoint, color, valueX, horizontal);
+                        default -> newFig;
+                    };
+                    loadedDessin.add(newFig);
+                }
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred : " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            br.close();
+        }
+        return loadedDessin;
     }
 }

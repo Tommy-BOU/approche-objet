@@ -11,7 +11,7 @@ public class CarreHerite extends Rectangle implements Surfacable {
     }
 
     public String getType(){
-        return "CARRE";
+        return "CARREHERITE";
     }
 
 }

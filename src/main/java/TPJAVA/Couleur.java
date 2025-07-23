@@ -1,35 +1,30 @@
 package TPJAVA;
 
 public enum Couleur {
-    ROUGE,
-    VERT,
-    BLEU,
-    JAUNE,
-    NOIR;
+    ROUGE('R'),
+    VERT('V'),
+    BLEU('B'),
+    JAUNE('J'),
+    NOIR('N');
+
+    char code;
+
+    Couleur (char code){
+        this.code = code;
+    }
 
     public static Couleur getCouleurDefaut() {
         return Couleur.NOIR;
     }
 //
-//    public static Couleur getCouleur(String code) {
-//        switch (code) {
-//            case "R":
-//                return Couleur.ROUGE;
-//
-//            case "V":
-//                return Couleur.VERT;
-//
-//            case "B":
-//                return Couleur.BLEU;
-//
-//            case "J":
-//                return Couleur.JAUNE;
-//
-//            case "N":
-//                return Couleur.NOIR;
-//
-//            default:
-//                return getCouleurDefaut();
-//        }
-//    }
+    public static Couleur getCouleur(char code) {
+        return switch (code) {
+            case 'R' -> Couleur.ROUGE;
+            case 'V' -> Couleur.VERT;
+            case 'B' -> Couleur.BLEU;
+            case 'J' -> Couleur.JAUNE;
+            case 'N' -> Couleur.NOIR;
+            default -> getCouleurDefaut();
+        };
+    }
 }
