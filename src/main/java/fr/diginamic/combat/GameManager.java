@@ -1,7 +1,7 @@
 package fr.diginamic.combat;
 
-import javax.management.InstanceAlreadyExistsException;
-import java.util.HashSet;
+import fr.diginamic.Utils;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -34,7 +34,8 @@ public class GameManager {
         }
         System.out.println("5 - Sortir");
 
-        int userChoice = scanner.nextInt();
+        String userInput = scanner.nextLine();
+        int userChoice = Utils.inputToInt(userInput);
 
         switch (userChoice) {
             case 1:
@@ -160,7 +161,9 @@ public class GameManager {
         System.out.println("3 - Potion d'attaque majeure (" + currentCharacter.numOfMajorAttackPotion + ")");
         System.out.println("4 - retour");
 
-        int userChoice = scanner.nextInt();
+        String userInput = scanner.nextLine();
+        int userChoice = Utils.inputToInt(userInput);
+
         switch (userChoice) {
             case 1:
                 if (currentCharacter.numOfHealthPotions > 0) {
